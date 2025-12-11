@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa; }
+        .auth-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 350px; }
+        h2 { text-align: center; color: #28a745; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; }
+        input[type="submit"] { width: 100%; background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: background-color 0.3s; }
+        input[type="submit"]:hover { background-color: #218838; }
+        .link { text-align: center; margin-top: 15px; }
+        .error { color: #dc3545; text-align: center; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Kayıt Ol</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            <p>
+                {{ form.username.label }}
+                {{ form.username() }}
+            </p>
+            <p>
+                {{ form.password.label }}
+                {{ form.password() }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+        <p class="link">Zaten hesabınız var mı? <a href="{{ url_for('login') }}">Giriş Yap</a></p>
+    </div>
+</body>
+</html>
